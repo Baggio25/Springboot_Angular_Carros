@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.baggio.projeto.carros_backend.dto.CarroDTO;
 import com.baggio.projeto.carros_backend.entity.Carro;
+import com.baggio.projeto.carros_backend.entity.Marca;
 import com.baggio.projeto.carros_backend.repository.CarroRepository;
+import com.baggio.projeto.carros_backend.repository.MarcaRepository;
 import com.baggio.projeto.carros_backend.service.exceptions.ResourceNotFoundException;
 import com.baggio.projeto.carros_backend.util.Constants;
 
@@ -21,6 +23,9 @@ public class CarroService implements GenericService<CarroDTO, Carro> {
 
   @Autowired
   private CarroRepository carroRepository;
+
+  @Autowired
+  private MarcaRepository marcaRepository;
   
   @Transactional(readOnly = true)
   @Override
@@ -82,6 +87,9 @@ public class CarroService implements GenericService<CarroDTO, Carro> {
     carro.setAnoModelo(dto.getAnoModelo());
     carro.setValorFipe(dto.getValorFipe());
     carro.setTipoCambio(dto.getTipoCambio());
+
+    Marca marca = marcaRepository.getReferenceById(dto.getMarca().getId());
+    carro.setMarca(marca);
   }
 
 }

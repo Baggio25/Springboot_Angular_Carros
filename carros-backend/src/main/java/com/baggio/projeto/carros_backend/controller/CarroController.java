@@ -19,7 +19,7 @@ import com.baggio.projeto.carros_backend.dto.CarroDTO;
 import com.baggio.projeto.carros_backend.service.CarroService;
 
 @RestController
-@RequestMapping("/api/carro")
+@RequestMapping("/api/carros")
 public class CarroController {
 
   @Autowired

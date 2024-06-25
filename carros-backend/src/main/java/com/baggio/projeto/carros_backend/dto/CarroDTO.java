@@ -26,6 +26,8 @@ public class CarroDTO {
   
   private TipoCambio tipoCambio;
 
+  private MarcaDTO marca;
+
   public CarroDTO(Carro carro) {
     id = carro.getId();
     nome = carro.getNome();
@@ -33,6 +35,7 @@ public class CarroDTO {
     anoModelo = carro.getAnoModelo();
     valorFipe = carro.getValorFipe();
     tipoCambio = carro.getTipoCambio();
+    marca = new MarcaDTO(carro.getMarca());
   }
 
 }

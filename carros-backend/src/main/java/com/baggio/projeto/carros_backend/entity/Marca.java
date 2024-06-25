@@ -1,17 +1,14 @@
 package com.baggio.projeto.carros_backend.entity;
 
-import java.math.BigDecimal;
-
-import com.baggio.projeto.carros_backend.entity.enums.TipoCambio;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +20,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "carro")
-public class Carro {
-  
+@Table(name = "marca")
+public class Marca {
+
   @EqualsAndHashCode.Include
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,21 +30,8 @@ public class Carro {
 
   @Column(name = "nome", nullable = false)
   private String nome;
-  
-  @Column(name = "ano_fabricacao", nullable = false)
-  private Integer anoFabricacao;
 
-  @Column(name = "ano_modelo", nullable = false)
-  private Integer anoModelo;
-
-  @Column(name = "valor_fipe", nullable = false)
-  private BigDecimal valorFipe;
-
-  @Enumerated(EnumType.STRING)
-  @Column(name = "tipo_cambio", nullable = false)
-  private TipoCambio tipoCambio;
-
-  @ManyToOne
-  private Marca marca;
+  @OneToMany(mappedBy = "marca")
+  private List<Carro> carros = new ArrayList<>();
 
 }
